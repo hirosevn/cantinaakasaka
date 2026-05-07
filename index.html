@@ -1,677 +1,1461 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>カンティーナ赤坂 | Cantina Akasaka – 福岡・赤坂のイタリアンレストラン</title>
-  <meta name="description" content="福岡市中央区赤坂の完全予約制イタリアンレストラン。厳選ワインとシェフの創作料理で贅沢なひとときを。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カンティーナ赤坂 | Cantina Akasaka — 福岡・赤坂の完全予約制イタリアン</title>
+<meta name="description" content="福岡市中央区赤坂の完全予約制イタリアンレストラン。厳選ワインとシェフの創作料理で贅沢なひとときを。赤坂駅徒歩3分。">
+<meta property="og:title" content="カンティーナ赤坂 | Cantina Akasaka">
+<meta property="og:description" content="福岡・赤坂の完全予約制イタリアンレストラン。厳選ワインと創作料理。">
+<meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   RESET & ROOT
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
 
-    :root {
-      --gold:       #c9a84c;
-      --gold-light: #e8d08a;
-      --gold-dim:   #8a6f30;
-      --bg:         #0b0b0b;
-      --bg2:        #111111;
-      --bg3:        #161616;
-      --text:       #e8e0d0;
-      --text-muted: #8a8070;
-      --border:     rgba(201,168,76,.18);
-    }
+:root {
+  --gold:        #c9a84c;
+  --gold-lt:     #e2c97e;
+  --gold-dk:     #8a6f30;
+  --gold-pale:   rgba(201,168,76,.12);
+  --gold-line:   rgba(201,168,76,.22);
+  --bg-base:     #090909;
+  --bg-1:        #0e0e0e;
+  --bg-2:        #131313;
+  --bg-3:        #181818;
+  --text:        #ede5d5;
+  --text-soft:   #b0a090;
+  --text-muted:  #706050;
+  --white:       #f5f0e8;
+}
 
-    html { scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--gold-dk); }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Montserrat', 'Noto Serif JP', serif;
-      font-weight: 300;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+body {
+  background: var(--bg-base);
+  color: var(--text);
+  font-family: 'Montserrat', 'Noto Serif JP', sans-serif;
+  font-weight: 300;
+  line-height: 1.85;
+  overflow-x: hidden;
+}
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 4rem;
-      background: linear-gradient(to bottom, rgba(11,11,11,.95) 0%, transparent 100%);
-      transition: background .4s;
-    }
-    nav.scrolled { background: rgba(11,11,11,.97); border-bottom: 1px solid var(--border); }
+/* =============================================
+   UTILITY
+   ============================================= */
+.u-gold       { color: var(--gold); }
+.u-center     { text-align: center; }
+.u-serif      { font-family: 'Cormorant Garamond', 'Noto Serif JP', serif; }
 
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem; font-weight: 400;
-      letter-spacing: .18em; color: var(--gold); text-decoration: none;
-    }
-    .nav-logo span { font-style: italic; font-weight: 300; color: var(--text-muted); font-size: .8em; margin-left: .5em; }
+.label {
+  display: inline-block;
+  font-size: .6rem;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .9rem;
+}
 
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--text-muted); text-decoration: none; transition: color .3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
+.heading-xl {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 1.04;
+  letter-spacing: .03em;
+  color: var(--text);
+}
+.heading-xl em { font-style: italic; color: var(--gold); }
 
-    .nav-reserve {
-      font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
-      border: 1px solid var(--gold-dim); color: var(--gold);
-      padding: .55rem 1.4rem; text-decoration: none;
-      transition: background .3s, color .3s;
-    }
-    .nav-reserve:hover { background: var(--gold); color: var(--bg); }
+.heading-lg {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: .04em;
+  color: var(--text);
+}
+.heading-lg em { font-style: italic; color: var(--gold); }
 
-    /* HERO */
-    #hero {
-      position: relative; height: 100vh; min-height: 680px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; overflow: hidden;
-    }
+.heading-md {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.3;
+  letter-spacing: .05em;
+  color: var(--text);
+}
 
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,.07) 0%, transparent 70%),
-        linear-gradient(160deg, #0f0c08 0%, #0b0b0b 50%, #080b0f 100%);
-    }
+.rule {
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.4rem 0 2rem;
+}
+.rule.center { margin-left: auto; margin-right: auto; }
 
-    .hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .hero-lines::before, .hero-lines::after {
-      content: ''; position: absolute; border: 1px solid rgba(201,168,76,.06); border-radius: 50%;
-    }
-    .hero-lines::before { width: 70vw; height: 70vw; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-    .hero-lines::after  { width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.body-text {
+  font-size: .85rem;
+  color: var(--text-soft);
+  line-height: 2.1;
+  max-width: 520px;
+}
+.body-text.wide { max-width: 680px; }
+.body-text.center { margin: 0 auto; text-align: center; }
 
-    .hero-content { position: relative; z-index: 2; }
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.ornament-line {
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dk));
+}
+.ornament-line.rev { background: linear-gradient(90deg, var(--gold-dk), transparent); }
+.ornament-diamond {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
 
-    .hero-eyebrow {
-      font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.8rem;
-    }
+.btn {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  padding: 1rem 2.6rem;
+  transition: all .3s;
+  cursor: pointer;
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--bg-base);
+}
+.btn-gold:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201,168,76,.25);
+}
+.btn-ghost {
+  border: 1px solid var(--gold-dk);
+  color: var(--gold);
+}
+.btn-ghost:hover {
+  background: var(--gold-pale);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
 
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 300; line-height: 1.05; letter-spacing: .05em;
-      color: var(--text); margin-bottom: .6rem;
-    }
-    .hero-title em { font-style: italic; color: var(--gold); }
+.section {
+  padding: 7rem 1.5rem;
+}
+.section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
 
-    .hero-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: clamp(1rem, 2vw, 1.4rem);
-      color: var(--text-muted); letter-spacing: .12em; margin-bottom: 3rem;
-    }
+/* fade-in */
+.fi {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.fi.on { opacity: 1; transform: none; }
+.fi-delay-1 { transition-delay: .1s; }
+.fi-delay-2 { transition-delay: .2s; }
+.fi-delay-3 { transition-delay: .3s; }
 
-    .hero-divider {
-      display: flex; align-items: center; gap: 1rem;
-      justify-content: center; margin-bottom: 3rem;
-    }
-    .hero-divider span { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim)); }
-    .hero-divider span:last-child { background: linear-gradient(to left, transparent, var(--gold-dim)); }
-    .hero-divider i { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); display: block; }
+/* =============================================
+   NAVIGATION
+   ============================================= */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 1.5rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(9,9,9,.9) 0%, transparent 100%);
+  transition: background .5s, padding .4s;
+}
+#nav.stuck {
+  padding: 1rem 3.5rem;
+  background: rgba(9,9,9,.96);
+  border-bottom: 1px solid var(--gold-line);
+}
 
-    .hero-cta { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  color: var(--gold);
+}
+.nav-brand small {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .5rem;
+  letter-spacing: .35em;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-top: .1rem;
+}
 
-    .btn-primary {
-      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
-      background: var(--gold); color: var(--bg);
-      padding: 1rem 2.4rem; text-decoration: none; font-weight: 500;
-      transition: background .3s, transform .2s; display: inline-block;
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color .3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -.2rem; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
 
-    .btn-outline {
-      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
-      border: 1px solid var(--gold-dim); color: var(--gold);
-      padding: 1rem 2.4rem; text-decoration: none;
-      transition: background .3s, color .3s, transform .2s; display: inline-block;
-    }
-    .btn-outline:hover { background: rgba(201,168,76,.1); transform: translateY(-1px); }
+.nav-cta {
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold-dk);
+  color: var(--gold);
+  padding: .6rem 1.5rem;
+  transition: background .3s, color .3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg-base); }
 
-    .hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--text-muted);
-    }
-    .hero-scroll-line {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--gold-dim), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+/* hamburger (mobile) */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--gold);
+  transition: all .3s;
+}
 
-    /* SECTION COMMONS */
-    section { padding: 8rem 2rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
+/* =============================================
+   HERO
+   ============================================= */
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
 
-    .section-label {
-      font-size: .6rem; letter-spacing: .35em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem;
-    }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 35%, rgba(201,168,76,.06) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,168,76,.03) 0%, transparent 60%),
+    linear-gradient(150deg, #0d0b07 0%, #090909 45%, #07090d 100%);
+}
 
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 300; line-height: 1.15; letter-spacing: .04em;
-      color: var(--text); margin-bottom: 1.2rem;
-    }
-    .section-title em { font-style: italic; color: var(--gold); }
+/* subtle animated glow */
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.06) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -55%);
+  animation: glowPulse 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes glowPulse {
+  0%,100% { opacity: .5; transform: translate(-50%,-55%) scale(1); }
+  50%      { opacity: 1;  transform: translate(-50%,-55%) scale(1.12); }
+}
 
-    .gold-rule {
-      width: 40px; height: 1px; background: var(--gold); margin: 1.6rem 0 2.5rem;
-    }
-    .gold-rule.center { margin-left: auto; margin-right: auto; }
+/* concentric rings */
+.hero-rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-rings span {
+  position: absolute;
+  border: 1px solid rgba(201,168,76,.05);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.hero-rings span:nth-child(1) { width: 38vw; height: 38vw; }
+.hero-rings span:nth-child(2) { width: 58vw; height: 58vw; }
+.hero-rings span:nth-child(3) { width: 78vw; height: 78vw; border-color: rgba(201,168,76,.03); }
 
-    .section-body {
-      font-size: .88rem; color: var(--text-muted); max-width: 560px; line-height: 2;
-    }
-    .section-body.center { text-align: center; margin: 0 auto; }
+.hero-content { position: relative; z-index: 2; padding: 0 1rem; }
 
-    /* ABOUT */
-    #about { background: var(--bg2); }
+.hero-eyebrow {
+  font-size: .58rem;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: .95;
+  letter-spacing: .04em;
+  color: var(--text);
+  margin-bottom: .5rem;
+}
+.hero-title em {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  font-size: .65em;
+  letter-spacing: .12em;
+}
 
-    .about-visual { position: relative; aspect-ratio: 3/4; max-width: 420px; }
-    .about-frame { position: absolute; inset: 0; border: 1px solid var(--border); }
-    .about-frame::before {
-      content: ''; position: absolute; inset: 12px; border: 1px solid rgba(201,168,76,.08);
-    }
-    .about-pattern {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 40% 60%, rgba(201,168,76,.05) 0%, transparent 70%),
-        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,168,76,.02) 20px, rgba(201,168,76,.02) 21px);
-    }
-    .about-badge {
-      position: absolute; bottom: -1.5rem; right: -1.5rem;
-      width: 100px; height: 100px; border: 1px solid var(--gold-dim);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: var(--bg2);
-    }
-    .about-badge .num {
-      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
-      color: var(--gold); line-height: 1;
-    }
-    .about-badge .lbl { font-size: .55rem; letter-spacing: .18em; color: var(--text-muted); margin-top: .2rem; }
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(.9rem, 1.8vw, 1.25rem);
+  color: var(--text-muted);
+  letter-spacing: .15em;
+  margin: 1.8rem 0 2.8rem;
+}
 
-    .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2.5rem; }
-    .about-feature { border-left: 1px solid var(--gold-dim); padding-left: 1rem; }
-    .about-feature h4 {
-      font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400;
-      color: var(--gold); margin-bottom: .3rem;
-    }
-    .about-feature p { font-size: .75rem; color: var(--text-muted); line-height: 1.7; }
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  margin-bottom: 2.8rem;
+}
+.hero-divider-line {
+  width: 50px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dk));
+}
+.hero-divider-line.r { background: linear-gradient(90deg, var(--gold-dk), transparent); }
+.hero-divider-dot {
+  width: 5px; height: 5px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
 
-    /* FEATURES */
-    #features { background: var(--bg); }
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-    .features-header { text-align: center; margin-bottom: 5rem; }
-    .features-header .gold-rule { margin-left: auto; margin-right: auto; }
+.hero-meta {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 2rem 3.5rem;
+  z-index: 2;
+}
+.hero-meta-item {
+  font-size: .55rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 2;
+}
+.hero-meta-item strong {
+  display: block;
+  color: var(--text-soft);
+  font-weight: 400;
+  font-size: .65rem;
+}
 
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.hero-scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  font-size: .5rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.hero-scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--gold-dk), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:.25} 50%{opacity:.9} }
 
-    .feature-card {
-      background: var(--bg2); padding: 3.5rem 2.5rem;
-      border-bottom: 2px solid transparent;
-      transition: border-color .3s, background .3s; position: relative; overflow: hidden;
-    }
-    .feature-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,.04) 0%, transparent 70%);
-      opacity: 0; transition: opacity .4s;
-    }
-    .feature-card:hover { border-color: var(--gold); background: var(--bg3); }
-    .feature-card:hover::before { opacity: 1; }
+/* =============================================
+   CONCEPT STRIP
+   ============================================= */
+#concept-strip {
+  background: var(--bg-1);
+  border-top: 1px solid var(--gold-line);
+  border-bottom: 1px solid var(--gold-line);
+  padding: 2.2rem 1.5rem;
+}
+.concept-strip-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.concept-strip-item {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  color: var(--text-muted);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.concept-strip-item::before {
+  content: '';
+  display: block;
+  width: 5px; height: 5px;
+  border: 1px solid var(--gold-dk);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+.concept-sep {
+  width: 1px; height: 28px;
+  background: var(--gold-line);
+  flex-shrink: 0;
+}
 
-    .feature-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;
-      color: rgba(201,168,76,.12); line-height: 1; margin-bottom: 1.5rem; display: block;
-    }
+/* =============================================
+   ABOUT
+   ============================================= */
+#about { background: var(--bg-1); }
 
-    .feature-card h3 {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400;
-      color: var(--text); margin-bottom: .8rem; letter-spacing: .04em;
-    }
-    .feature-card p { font-size: .8rem; color: var(--text-muted); line-height: 1.9; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
 
-    /* OCCASIONS */
-    #occasions { background: var(--bg3); }
+.about-visual {
+  position: relative;
+}
+.about-frame-outer {
+  position: relative;
+  aspect-ratio: 3/4;
+  max-width: 380px;
+  border: 1px solid var(--gold-line);
+}
+.about-frame-inner {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(201,168,76,.08);
+}
+.about-fill {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 40% 55%, rgba(201,168,76,.06) 0%, transparent 70%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 18px,
+      rgba(201,168,76,.018) 18px,
+      rgba(201,168,76,.018) 19px
+    );
+}
+.about-corner {
+  position: absolute;
+  width: 18px; height: 18px;
+  border-color: var(--gold-dk);
+  border-style: solid;
+}
+.about-corner.tl { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.about-corner.tr { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+.about-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+.about-corner.br { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
 
-    .occasions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 4rem; }
+.about-badge {
+  position: absolute;
+  bottom: -2rem; right: -2rem;
+  width: 108px; height: 108px;
+  border: 1px solid var(--gold-dk);
+  background: var(--bg-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .15rem;
+}
+.about-badge-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.about-badge-label {
+  font-size: .5rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 
-    .occasion-card {
-      border: 1px solid var(--border); padding: 2.5rem;
-      transition: border-color .3s; position: relative;
-    }
-    .occasion-card:hover { border-color: var(--gold-dim); }
-    .occasion-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 1px; background: var(--gold); transition: width .4s;
-    }
-    .occasion-card:hover::after { width: 100%; }
-    .occasion-card h3 {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400;
-      color: var(--gold); margin-bottom: .6rem; letter-spacing: .06em;
-    }
-    .occasion-card p { font-size: .8rem; color: var(--text-muted); line-height: 1.9; }
+.about-text { }
+.about-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+.about-feat {
+  border-left: 1px solid var(--gold-dk);
+  padding-left: 1rem;
+  padding-bottom: .2rem;
+}
+.about-feat h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: .04em;
+  margin-bottom: .3rem;
+}
+.about-feat p {
+  font-size: .73rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
 
-    /* INFO */
-    #info { background: var(--bg2); }
+/* =============================================
+   THREE PILLARS
+   ============================================= */
+#pillars { background: var(--bg-base); }
 
-    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.pillars-header { text-align: center; margin-bottom: 4rem; }
+.pillars-header .rule { margin-left: auto; margin-right: auto; }
 
-    .info-table { width: 100%; border-collapse: collapse; }
-    .info-table tr { border-bottom: 1px solid var(--border); }
-    .info-table tr:first-child { border-top: 1px solid var(--border); }
-    .info-table td { padding: 1.1rem 0; font-size: .82rem; vertical-align: top; }
-    .info-table td:first-child {
-      color: var(--gold); font-size: .7rem; letter-spacing: .18em;
-      text-transform: uppercase; width: 38%; padding-right: 1rem;
-    }
-    .info-table td:last-child { color: var(--text-muted); }
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
 
-    .info-map { border: 1px solid var(--border); overflow: hidden; aspect-ratio: 4/3; }
-    .info-map iframe { width: 100%; height: 100%; display: block; filter: grayscale(1) invert(1) contrast(.85); }
+.pillar-card {
+  background: var(--bg-2);
+  padding: 3.2rem 2.2rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid transparent;
+  transition: border-color .35s, background .35s;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dk), transparent);
+  opacity: 0;
+  transition: opacity .35s;
+}
+.pillar-card:hover { border-color: var(--gold); background: var(--bg-3); }
+.pillar-card:hover::before { opacity: 1; }
 
-    /* RESERVATION */
-    #reservation { background: var(--bg); text-align: center; position: relative; overflow: hidden; }
-    #reservation::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
+.pillar-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(201,168,76,.08);
+  line-height: 1;
+  margin-bottom: 1.2rem;
+  display: block;
+  user-select: none;
+}
+.pillar-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: .05em;
+  margin-bottom: .8rem;
+}
+.pillar-card p {
+  font-size: .78rem;
+  color: var(--text-muted);
+  line-height: 2;
+}
 
-    .reservation-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+/* =============================================
+   OCCASIONS
+   ============================================= */
+#occasions { background: var(--bg-2); }
 
-    .reservation-ornament {
-      display: flex; align-items: center; gap: 1.2rem; justify-content: center; margin-bottom: 2.5rem;
-    }
-    .reservation-ornament span { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim)); }
-    .reservation-ornament span:last-child { background: linear-gradient(to left, transparent, var(--gold-dim)); }
-    .reservation-ornament i { width: 8px; height: 8px; border: 1px solid var(--gold); transform: rotate(45deg); display: block; }
+.occasions-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+}
 
-    #reservation .section-title { font-size: clamp(2rem, 4vw, 3rem); }
-    #reservation .section-body { font-size: .85rem; margin-bottom: 3rem; }
+.occasions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
 
-    .reservation-note {
-      font-size: .72rem; color: var(--text-muted); letter-spacing: .08em; margin-top: 1.5rem; opacity: .7;
-    }
+.occ-card {
+  border: 1px solid var(--gold-line);
+  padding: 2rem 1.8rem;
+  position: relative;
+  transition: border-color .3s;
+}
+.occ-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .4s;
+}
+.occ-card:hover { border-color: var(--gold-dk); }
+.occ-card:hover::after { width: 100%; }
 
-    /* CONTACT */
-    #contact { background: var(--bg2); }
+.occ-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: .06em;
+  margin-bottom: .5rem;
+}
+.occ-card h3 small {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .55rem;
+  letter-spacing: .2em;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-top: .15rem;
+}
+.occ-card p {
+  font-size: .75rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+/* =============================================
+   INFO / ACCESS
+   ============================================= */
+#info { background: var(--bg-1); }
 
-    .contact-item { margin-bottom: 2rem; }
-    .contact-item label {
-      display: block; font-size: .6rem; letter-spacing: .3em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: .5rem;
-    }
-    .contact-item a, .contact-item span {
-      font-size: .88rem; color: var(--text-muted); text-decoration: none; transition: color .3s;
-    }
-    .contact-item a:hover { color: var(--gold); }
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
 
-    .social-links { display: flex; gap: 1.2rem; margin-top: 2rem; }
-    .social-link {
-      width: 40px; height: 40px; border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: var(--text-muted);
-      transition: border-color .3s, color .3s;
-      font-size: .7rem; letter-spacing: .05em;
-    }
-    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.hours-table tbody tr {
+  border-bottom: 1px solid var(--gold-line);
+}
+.hours-table tbody tr:first-child {
+  border-top: 1px solid var(--gold-line);
+}
+.hours-table td {
+  padding: 1rem 0;
+  font-size: .8rem;
+  vertical-align: top;
+}
+.hours-table td:first-child {
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  width: 42%;
+  padding-right: 1rem;
+}
+.hours-table td:last-child { color: var(--text-soft); }
+.hours-closed { opacity: .4; }
 
-    /* FOOTER */
-    footer {
-      background: var(--bg); border-top: 1px solid var(--border);
-      padding: 3rem 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
-      color: var(--gold); letter-spacing: .15em;
-    }
-    .footer-copy { font-size: .65rem; color: var(--text-muted); letter-spacing: .1em; }
-    .footer-links { display: flex; gap: 2rem; list-style: none; }
-    .footer-links a {
-      font-size: .65rem; letter-spacing: .15em; color: var(--text-muted);
-      text-decoration: none; transition: color .3s;
-    }
-    .footer-links a:hover { color: var(--gold); }
+.access-block { margin-top: 2rem; }
+.access-item {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--gold-line);
+  font-size: .8rem;
+}
+.access-item:first-child { border-top: 1px solid var(--gold-line); }
+.access-item-label {
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  min-width: 70px;
+  padding-top: .1rem;
+}
+.access-item-body { color: var(--text-soft); line-height: 1.8; }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { display: none; }
-      section { padding: 5rem 1.5rem; }
-      .about-grid, .info-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-visual { max-width: 280px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .occasions-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; padding: 2.5rem 1.5rem; }
-    }
+.map-container {
+  border: 1px solid var(--gold-line);
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  position: relative;
+}
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: grayscale(100%) invert(1) contrast(.82) sepia(.1);
+}
+.map-overlay-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(9,9,9,.9) 0%, transparent 100%);
+  padding: 1.2rem 1rem .8rem;
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  pointer-events: none;
+}
 
-    /* FADE IN */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-  </style>
+/* =============================================
+   RESERVATION CTA
+   ============================================= */
+#reservation {
+  background: var(--bg-base);
+  padding: 8rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#reservation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201,168,76,.055) 0%, transparent 70%);
+  pointer-events: none;
+}
+.reservation-frame {
+  position: absolute;
+  inset: 3rem;
+  border: 1px solid rgba(201,168,76,.06);
+  pointer-events: none;
+}
+.reservation-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.reservation-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  margin-bottom: 2.5rem;
+  line-height: 1.9;
+}
+.reservation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+.reservation-note {
+  font-size: .62rem;
+  letter-spacing: .15em;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  opacity: .65;
+}
+
+/* =============================================
+   CONTACT
+   ============================================= */
+#contact { background: var(--bg-2); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+
+.contact-list { margin-top: 1.5rem; }
+.contact-row {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--gold-line);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+.contact-row:first-child { border-top: 1px solid var(--gold-line); }
+.contact-row-label {
+  font-size: .58rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.contact-row-value {
+  font-size: .82rem;
+  color: var(--text-soft);
+}
+.contact-row-value a { transition: color .3s; }
+.contact-row-value a:hover { color: var(--gold); }
+
+.social-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.social-btn {
+  width: 44px; height: 44px;
+  border: 1px solid var(--gold-line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .58rem;
+  letter-spacing: .1em;
+  color: var(--text-muted);
+  transition: border-color .3s, color .3s, background .3s;
+  text-transform: uppercase;
+}
+.social-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-pale);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+#footer {
+  background: var(--bg-base);
+  border-top: 1px solid var(--gold-line);
+  padding: 2.8rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  letter-spacing: .2em;
+  color: var(--gold);
+}
+.footer-brand small {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .48rem;
+  letter-spacing: .3em;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-top: .2rem;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: .58rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color .3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-copy {
+  font-size: .58rem;
+  letter-spacing: .12em;
+  color: var(--text-muted);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 960px) {
+  #nav { padding: 1.2rem 1.5rem; }
+  #nav.stuck { padding: .9rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero-meta { display: none; }
+
+  .section { padding: 5rem 1.5rem; }
+
+  .about-grid,
+  .occasions-layout,
+  .info-grid,
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+  .about-frame-outer { max-width: 260px; }
+  .about-badge { bottom: -1.2rem; right: -1.2rem; width: 88px; height: 88px; }
+  .about-badge-num { font-size: 2rem; }
+
+  .pillars-grid { grid-template-columns: 1fr; gap: 2px; }
+  .occasions-grid { grid-template-columns: 1fr; }
+
+  .reservation-frame { display: none; }
+
+  #footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  .footer-links { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 3.5rem; }
+  .about-features-grid { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .reservation-actions { flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">Cantina Akasaka <span>赤坂</span></a>
+  <div class="nav-brand">
+    Cantina Akasaka
+    <small>福岡・赤坂 — イタリアン</small>
+  </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#features">Menu</a></li>
+    <li><a href="#pillars">Menu</a></li>
     <li><a href="#occasions">Occasions</a></li>
     <li><a href="#info">Access</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="nav-reserve">Reserve</a>
+  <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="nav-cta">Reserve</a>
+  <div class="nav-hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ============================================================
+     HERO
+     ============================================================ -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-rings">
+    <span></span><span></span><span></span>
+  </div>
+
   <div class="hero-content">
-    <p class="hero-eyebrow">Fukuoka · Akasaka · Italian</p>
-    <h1 class="hero-title">Cantina<br><em>Akasaka</em></h1>
-    <p class="hero-subtitle">カンティーナ赤坂 — 完全予約制のイタリアン</p>
+    <p class="hero-eyebrow">Fukuoka &nbsp;·&nbsp; Akasaka &nbsp;·&nbsp; Italian</p>
+
+    <h1 class="hero-title">
+      Cantina
+      <em>Akasaka</em>
+    </h1>
+
+    <p class="hero-tagline">カンティーナ赤坂 — 完全予約制の大人のイタリアン</p>
+
     <div class="hero-divider">
-      <span></span><i></i><span></span>
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-dot"></div>
+      <div class="hero-divider-line r"></div>
     </div>
+
     <div class="hero-cta">
-      <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn-primary">ご予約はこちら</a>
-      <a href="#about" class="btn-outline">About Us</a>
+      <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn btn-gold">ご予約はこちら</a>
+      <a href="#about" class="btn btn-ghost">About Us</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <strong>092-3XX-1234</strong>
+      Phone
+    </div>
+    <div class="hero-scroll-cue">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+    <div class="hero-meta-item" style="text-align:right">
+      <strong>17:00 – 00:00</strong>
+      Wed – Sun
+    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
+<!-- ============================================================
+     CONCEPT STRIP
+     ============================================================ -->
+<div id="concept-strip">
+  <div class="concept-strip-inner">
+    <span class="concept-strip-item">完全予約制</span>
+    <div class="concept-sep"></div>
+    <span class="concept-strip-item">厳選イタリアワイン</span>
+    <div class="concept-sep"></div>
+    <span class="concept-strip-item">シェフの創作料理</span>
+    <div class="concept-sep"></div>
+    <span class="concept-strip-item">赤坂駅徒歩3分</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about" class="section">
   <div class="section-inner">
     <div class="about-grid">
-      <div class="about-visual fade-in">
-        <div class="about-frame">
-          <div class="about-pattern"></div>
+
+      <!-- Visual -->
+      <div class="about-visual fi">
+        <div class="about-frame-outer">
+          <div class="about-frame-inner"></div>
+          <div class="about-fill"></div>
+          <div class="about-corner tl"></div>
+          <div class="about-corner tr"></div>
+          <div class="about-corner bl"></div>
+          <div class="about-corner br"></div>
         </div>
         <div class="about-badge">
-          <span class="num">17</span>
-          <span class="lbl">Open</span>
+          <div class="about-badge-num">17</div>
+          <div class="about-badge-label">Open</div>
         </div>
       </div>
-      <div class="fade-in">
-        <p class="section-label">Our Story</p>
-        <h2 class="section-title">大人のための、<br><em>特別な夜</em></h2>
-        <div class="gold-rule"></div>
-        <p class="section-body">
+
+      <!-- Text -->
+      <div class="fi fi-delay-1">
+        <p class="label">Our Story</p>
+        <h2 class="heading-lg">大人のための、<br><em>特別な夜</em></h2>
+        <div class="rule"></div>
+        <p class="body-text">
           福岡・赤坂の静かな一角に佇む、完全予約制のイタリアンレストラン。
-          シェフが厳選した旬の食材と、世界各地から集めた珠玉のワインで、
-          日常を離れた贅沢なひとときをご提供します。
-          洗練された空間で奏でられる料理の物語に、どうぞ身を委ねてください。
+          九州の豊かな旬の食材と、イタリアをはじめ世界各地から厳選したワインで、
+          日常を離れた贅沢なひとときをご提供します。<br><br>
+          シェフの感性が光る独創的な料理と、洗練された空間が織りなす物語に、
+          どうぞ身を委ねてください。
         </p>
-        <div class="about-features">
-          <div class="about-feature">
+        <div class="about-features-grid">
+          <div class="about-feat">
             <h4>完全予約制</h4>
-            <p>ゆったりとした空間と丁寧なサービスのために、完全予約制を採用しています。</p>
+            <p>一組一組に丁寧なサービスを届けるため、完全予約制を採用しています。</p>
           </div>
-          <div class="about-feature">
+          <div class="about-feat">
             <h4>創作イタリアン</h4>
-            <p>シェフの感性が光る、季節ごとに変わる独創的なイタリア料理。</p>
+            <p>シェフの感性と季節の恵みが出会う、唯一無二のメニュー。</p>
           </div>
-          <div class="about-feature">
+          <div class="about-feat">
             <h4>厳選ワイン</h4>
-            <p>イタリアをはじめ、世界各地の名醸地から丁寧に選んだ一本。</p>
+            <p>イタリアを中心に世界の名醸地から、料理に寄り添う一本を。</p>
           </div>
-          <div class="about-feature">
-            <h4>プライベート空間</h4>
-            <p>落ち着いた大人の雰囲気で、大切な方との特別な時間を。</p>
+          <div class="about-feat">
+            <h4>大人の空間</h4>
+            <p>落ち着いた照明と静謐な雰囲気が、特別な夜を演出します。</p>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features">
+<!-- ============================================================
+     THREE PILLARS
+     ============================================================ -->
+<section id="pillars" class="section">
   <div class="section-inner">
-    <div class="features-header fade-in">
-      <p class="section-label">What We Offer</p>
-      <h2 class="section-title">三つの<em>こだわり</em></h2>
-      <div class="gold-rule center"></div>
-      <p class="section-body center">
-        料理・ワイン・空間。カンティーナ赤坂が大切にする三つの柱が、唯一無二の体験を生み出します。
+    <div class="pillars-header fi">
+      <p class="label">What We Offer</p>
+      <h2 class="heading-lg">三つの<em>こだわり</em></h2>
+      <div class="rule center"></div>
+      <p class="body-text center">
+        料理・ワイン・空間——カンティーナ赤坂が大切にする三つの柱が、<br>
+        唯一無二の体験を生み出します。
       </p>
     </div>
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <span class="feature-num">01</span>
+
+    <div class="pillars-grid">
+      <div class="pillar-card fi">
+        <span class="pillar-num">01</span>
         <h3>厳選ワイン</h3>
         <p>
-          イタリア各州の名醸ワインを中心に、フランス・スペイン・新世界まで、
-          ソムリエが一本一本選び抜いたラインナップ。料理との最高のペアリングをご提案します。
+          イタリア各州の銘醸ワインを中心に、フランス・スペイン・新世界まで、
+          ソムリエが一本一本選び抜いたラインナップをご用意しています。
+          料理との最高のマリアージュをご提案します。
         </p>
       </div>
-      <div class="feature-card fade-in">
-        <span class="feature-num">02</span>
+      <div class="pillar-card fi fi-delay-1">
+        <span class="pillar-num">02</span>
         <h3>シェフの逸品</h3>
         <p>
-          九州の旬の食材にイタリアの伝統と現代的な感性を融合させた創作料理。
-          季節ごとに変わるメニューで、何度訪れても新鮮な感動を。
+          九州の旬の食材にイタリアの伝統と現代的な感性を融合させた、
+          シェフ渾身の創作料理。季節ごとに変わるメニューで、
+          何度訪れても新鮮な感動をお届けします。
         </p>
       </div>
-      <div class="feature-card fade-in">
-        <span class="feature-num">03</span>
+      <div class="pillar-card fi fi-delay-2">
+        <span class="pillar-num">03</span>
         <h3>大人の空間</h3>
         <p>
-          ゆったりとしたシートと落ち着いた照明、心地よい音楽が流れる店内。
-          大切な方との特別なひとときに相応しい、洗練された大人の空間です。
+          ゆったりとしたシートと洗練された照明、心地よい音楽が流れる店内は、
+          大切な方との特別なひとときに相応しい、静謐で豊かな空間です。
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- OCCASIONS -->
-<section id="occasions">
+<!-- ============================================================
+     OCCASIONS
+     ============================================================ -->
+<section id="occasions" class="section">
   <div class="section-inner">
-    <div class="fade-in">
-      <p class="section-label">Special Occasions</p>
-      <h2 class="section-title">特別な<em>シーン</em>に</h2>
-      <div class="gold-rule"></div>
-      <p class="section-body">
-        記念日、デート、接待、お祝い——大切なシーンの数だけ、特別な体験を。
-        カンティーナ赤坂がその夜を、忘れられない思い出に変えます。
-      </p>
-    </div>
-    <div class="occasions-grid">
-      <div class="occasion-card fade-in">
-        <h3>Anniversary &amp; Birthday</h3>
-        <p>記念日・誕生日のサプライズ演出もご相談ください。特別なメッセージプレートやシャンパンのご用意も可能です。</p>
+    <div class="occasions-layout">
+
+      <div class="fi">
+        <p class="label">Special Occasions</p>
+        <h2 class="heading-lg">特別な<br><em>シーン</em>に</h2>
+        <div class="rule"></div>
+        <p class="body-text">
+          記念日、デート、接待、お祝い——
+          大切なシーンの数だけ、特別な体験を。
+          カンティーナ赤坂がその夜を、
+          忘れられない思い出に変えます。
+        </p>
+        <div style="margin-top:2.5rem;">
+          <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn btn-ghost">ご予約・お問い合わせ</a>
+        </div>
       </div>
-      <div class="occasion-card fade-in">
-        <h3>Romantic Dinner</h3>
-        <p>二人だけの特別な夜に。落ち着いた雰囲気の中で、料理とワインが会話に彩りを添えます。</p>
+
+      <div class="occasions-grid fi fi-delay-1">
+        <div class="occ-card">
+          <h3>Anniversary
+            <small>記念日・お祝い</small>
+          </h3>
+          <p>誕生日や記念日のサプライズ演出もご相談ください。メッセージプレートやシャンパンのご用意も可能です。</p>
+        </div>
+        <div class="occ-card">
+          <h3>Date Night
+            <small>デート・ディナー</small>
+          </h3>
+          <p>二人だけの特別な夜に。落ち着いた雰囲気の中で、料理とワインが会話に彩りを添えます。</p>
+        </div>
+        <div class="occ-card">
+          <h3>Entertainment
+            <small>接待・会食</small>
+          </h3>
+          <p>大切なお客様との食事に。洗練されたサービスとプライバシーが守られた空間をご提供します。</p>
+        </div>
+        <div class="occ-card">
+          <h3>Celebration
+            <small>各種お祝いごと</small>
+          </h3>
+          <p>昇進・入学・卒業など人生の節目に。少人数グループでのご利用もご相談承ります。</p>
+        </div>
       </div>
-      <div class="occasion-card fade-in">
-        <h3>Business Entertainment</h3>
-        <p>大切なお客様との会食や接待に。洗練されたサービスとプライバシーが守られた空間をご提供します。</p>
-      </div>
-      <div class="occasion-card fade-in">
-        <h3>Celebration</h3>
-        <p>昇進・入学・卒業など人生の節目に。グループでのご利用もご相談承ります。</p>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- INFO -->
-<section id="info">
+<!-- ============================================================
+     INFO / ACCESS
+     ============================================================ -->
+<section id="info" class="section">
   <div class="section-inner">
-    <div class="fade-in" style="margin-bottom:3.5rem">
-      <p class="section-label">Access &amp; Hours</p>
-      <h2 class="section-title">店舗<em>情報</em></h2>
-      <div class="gold-rule"></div>
+
+    <div class="fi" style="margin-bottom:3.5rem">
+      <p class="label">Access &amp; Hours</p>
+      <h2 class="heading-lg">店舗<em>情報</em></h2>
+      <div class="rule"></div>
     </div>
+
     <div class="info-grid">
-      <div class="fade-in">
-        <table class="info-table">
-          <tr>
-            <td>住所</td>
-            <td>福岡県福岡市中央区赤坂<br><span style="font-size:.75rem;opacity:.6">地下鉄空港線・赤坂駅より徒歩3分</span></td>
-          </tr>
-          <tr>
-            <td>電話</td>
-            <td><a href="tel:09233001234" style="color:var(--text-muted);text-decoration:none;">092-3XX-1234</a></td>
-          </tr>
-          <tr>
-            <td>メール</td>
-            <td><a href="mailto:info@cantina.jp" style="color:var(--text-muted);text-decoration:none;">info@cantina.jp</a></td>
-          </tr>
-          <tr>
-            <td>営業時間</td>
-            <td>火〜木・日 &nbsp;17:00 – 24:00<br>金・土 &nbsp;17:00 – 01:00</td>
-          </tr>
-          <tr>
-            <td>定休日</td>
-            <td style="opacity:.5">月曜日</td>
-          </tr>
-          <tr>
-            <td>予約</td>
-            <td>完全予約制 — HotPepperよりご予約ください</td>
-          </tr>
-          <tr>
-            <td>駐車場</td>
-            <td>近隣に契約駐車場あり</td>
-          </tr>
+
+      <div class="fi">
+        <table class="hours-table">
+          <tbody>
+            <tr class="hours-closed">
+              <td>月・火曜日</td>
+              <td>定休日</td>
+            </tr>
+            <tr>
+              <td>水・木曜日</td>
+              <td>17:00 – 00:00</td>
+            </tr>
+            <tr>
+              <td>金曜日</td>
+              <td>17:00 – 00:00</td>
+            </tr>
+            <tr>
+              <td>土曜日</td>
+              <td>17:00 – 00:00</td>
+            </tr>
+            <tr>
+              <td>日曜日</td>
+              <td>17:00 – 00:00</td>
+            </tr>
+          </tbody>
         </table>
+
+        <div class="access-block">
+          <div class="access-item">
+            <span class="access-item-label">住所</span>
+            <span class="access-item-body">
+              福岡県福岡市中央区赤坂
+            </span>
+          </div>
+          <div class="access-item">
+            <span class="access-item-label">アクセス</span>
+            <span class="access-item-body">
+              地下鉄空港線「赤坂駅」より徒歩3分
+            </span>
+          </div>
+          <div class="access-item">
+            <span class="access-item-label">駐車場</span>
+            <span class="access-item-body">近隣に契約駐車場あり</span>
+          </div>
+          <div class="access-item">
+            <span class="access-item-label">予約</span>
+            <span class="access-item-body">完全予約制 — HotPepperよりご予約ください</span>
+          </div>
+          <div class="access-item">
+            <span class="access-item-label">電話</span>
+            <span class="access-item-body">
+              <a href="tel:09233001234" style="color:var(--text-soft);transition:color .3s;">092-3XX-1234</a>
+            </span>
+          </div>
+        </div>
       </div>
-      <div class="fade-in">
-        <div class="info-map">
+
+      <div class="fi fi-delay-1">
+        <div class="map-container">
           <iframe
             src="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6"
-            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
             title="カンティーナ赤坂 地図">
           </iframe>
+          <div class="map-overlay-label">Cantina Akasaka — 赤坂駅徒歩3分</div>
         </div>
-        <p style="font-size:.72rem;color:var(--text-muted);margin-top:1rem;line-height:1.8;opacity:.7;">
-          地下鉄空港線 赤坂駅 出口より徒歩約3分。<br>
-          お車でお越しの際は近隣の契約駐車場をご利用ください。
-        </p>
+        <div style="margin-top:1.5rem;">
+          <a href="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size:.58rem;padding:.8rem 1.8rem;">Google Maps で開く</a>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- RESERVATION -->
+<!-- ============================================================
+     RESERVATION CTA
+     ============================================================ -->
 <section id="reservation">
-  <div class="reservation-inner fade-in">
-    <div class="reservation-ornament">
-      <span></span><i></i><span></span>
+  <div class="reservation-frame"></div>
+  <div class="reservation-inner fi">
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line rev"></div>
     </div>
-    <p class="section-label">Reservation</p>
-    <h2 class="section-title">ご予約・<em>お問い合わせ</em></h2>
-    <div class="gold-rule center"></div>
-    <p class="section-body center">
+
+    <p class="label">Reservation</p>
+    <h2 class="heading-lg">ご予約・<em>お問い合わせ</em></h2>
+    <div class="rule center"></div>
+
+    <p class="reservation-quote">
+      「今夜、特別な時間を過ごしたい」——<br>
+      そのお気持ちに、私たちは誠心誠意お応えします。
+    </p>
+
+    <p class="body-text center">
       カンティーナ赤坂は完全予約制です。
-      HotPepperよりご予約いただくか、お電話・メールにてお問い合わせください。
+      HotPepperよりご予約いただくか、
+      お電話・メールにてお問い合わせください。
       皆様のご来店を心よりお待ちしております。
     </p>
-    <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1rem;">
-      HotPepperで予約する
-    </a>
-    <p class="reservation-note">完全予約制 / Completely Reservation-Based</p>
+
+    <div class="reservation-actions">
+      <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn btn-gold">HotPepperで予約する</a>
+      <a href="mailto:info@cantina.jp" class="btn btn-ghost">メールで問い合わせ</a>
+    </div>
+
+    <p class="reservation-note">完全予約制 &nbsp;/&nbsp; Completely Reservation-Based</p>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact" class="section">
   <div class="section-inner">
     <div class="contact-grid">
-      <div class="fade-in">
-        <p class="section-label">Contact</p>
-        <h2 class="section-title">お<em>問い合わせ</em></h2>
-        <div class="gold-rule"></div>
-        <p class="section-body">
-          ご不明な点やご要望がございましたら、お気軽にご連絡ください。
+
+      <div class="fi">
+        <p class="label">Contact</p>
+        <h2 class="heading-lg">お<em>問い合わせ</em></h2>
+        <div class="rule"></div>
+        <p class="body-text">
+          ご不明な点やご要望がございましたら、
+          お気軽にご連絡ください。
           スタッフ一同、誠心誠意対応いたします。
         </p>
-      </div>
-      <div class="fade-in">
-        <div class="contact-item">
-          <label>Phone</label>
-          <a href="tel:09233001234">092-3XX-1234</a>
-        </div>
-        <div class="contact-item">
-          <label>Email</label>
-          <a href="mailto:info@cantina.jp">info@cantina.jp</a>
-        </div>
-        <div class="contact-item">
-          <label>Instagram</label>
-          <a href="https://instagram.com/cantinaakasaka" target="_blank" rel="noopener">@cantinaakasaka</a>
-        </div>
-        <div class="contact-item">
-          <label>Reservation</label>
-          <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener">HotPepper Beauty</a>
-        </div>
-        <div class="social-links">
-          <a href="https://instagram.com/cantinaakasaka" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">IG</a>
-          <a href="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6" target="_blank" rel="noopener" class="social-link" aria-label="Maps">MAP</a>
-          <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="social-link" aria-label="HotPepper">HP</a>
+
+        <div class="social-row">
+          <a href="https://www.instagram.com/cantinaakasaka/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">IG</a>
+          <a href="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6" target="_blank" rel="noopener" class="social-btn" aria-label="Google Maps">MAP</a>
+          <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="social-btn" aria-label="HotPepper">HP</a>
         </div>
       </div>
+
+      <div class="fi fi-delay-1">
+        <div class="contact-list">
+          <div class="contact-row">
+            <span class="contact-row-label">Tel</span>
+            <span class="contact-row-value">
+              <a href="tel:09233001234">092-3XX-1234</a>
+            </span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Email</span>
+            <span class="contact-row-value">
+              <a href="mailto:info@cantina.jp">info@cantina.jp</a>
+            </span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Instagram</span>
+            <span class="contact-row-value">
+              <a href="https://www.instagram.com/cantinaakasaka/" target="_blank" rel="noopener">@cantinaakasaka</a>
+            </span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Reservation</span>
+            <span class="contact-row-value">
+              <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener">HotPepper Beauty</a>
+            </span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Address</span>
+            <span class="contact-row-value">
+              福岡市中央区赤坂<br>
+              <span style="font-size:.72rem;opacity:.6">赤坂駅より徒歩3分</span>
+            </span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Hours</span>
+            <span class="contact-row-value">
+              水〜日 &nbsp;17:00 – 00:00<br>
+              <span style="font-size:.72rem;opacity:.6">月・火曜定休</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-logo">Cantina Akasaka</span>
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer">
+  <div class="footer-brand">
+    Cantina Akasaka
+    <small>カンティーナ赤坂 &nbsp;·&nbsp; 福岡市中央区</small>
+  </div>
   <ul class="footer-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#features">Menu</a></li>
+    <li><a href="#pillars">Menu</a></li>
+    <li><a href="#occasions">Occasions</a></li>
     <li><a href="#info">Access</a></li>
     <li><a href="#reservation">Reserve</a></li>
   </ul>
   <span class="footer-copy">&copy; 2026 カンティーナ赤坂. All rights reserved.</span>
 </footer>
 
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+  /* nav sticky */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('stuck', window.scrollY > 50);
   }, { passive: true });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
+  /* fade-in observer */
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
+        setTimeout(function() {
+          e.target.classList.add('on');
+        }, i * 70);
+        io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fi').forEach(function(el) { io.observe(el); });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  /* smooth anchor for all internal links */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 </script>
 </body>
 </html>

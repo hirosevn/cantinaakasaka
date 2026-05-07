@@ -1,375 +1,677 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カンティーナ赤坂 - イタリアンレストラン</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-feature-settings: 'palt';
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(161, 98, 7, 0.85) 0%, rgba(220, 38, 38, 0.85) 100%);
-        }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .section-divider {
-            border-bottom: 3px solid #a16207;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カンティーナ赤坂 | Cantina Akasaka – 福岡・赤坂のイタリアンレストラン</title>
+  <meta name="description" content="福岡市中央区赤坂の完全予約制イタリアンレストラン。厳選ワインとシェフの創作料理で贅沢なひとときを。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #c9a84c;
+      --gold-light: #e8d08a;
+      --gold-dim:   #8a6f30;
+      --bg:         #0b0b0b;
+      --bg2:        #111111;
+      --bg3:        #161616;
+      --text:       #e8e0d0;
+      --text-muted: #8a8070;
+      --border:     rgba(201,168,76,.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', 'Noto Serif JP', serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: linear-gradient(to bottom, rgba(11,11,11,.95) 0%, transparent 100%);
+      transition: background .4s;
+    }
+    nav.scrolled { background: rgba(11,11,11,.97); border-bottom: 1px solid var(--border); }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 400;
+      letter-spacing: .18em; color: var(--gold); text-decoration: none;
+    }
+    .nav-logo span { font-style: italic; font-weight: 300; color: var(--text-muted); font-size: .8em; margin-left: .5em; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-reserve {
+      font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+      border: 1px solid var(--gold-dim); color: var(--gold);
+      padding: .55rem 1.4rem; text-decoration: none;
+      transition: background .3s, color .3s;
+    }
+    .nav-reserve:hover { background: var(--gold); color: var(--bg); }
+
+    /* HERO */
+    #hero {
+      position: relative; height: 100vh; min-height: 680px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,.07) 0%, transparent 70%),
+        linear-gradient(160deg, #0f0c08 0%, #0b0b0b 50%, #080b0f 100%);
+    }
+
+    .hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-lines::before, .hero-lines::after {
+      content: ''; position: absolute; border: 1px solid rgba(201,168,76,.06); border-radius: 50%;
+    }
+    .hero-lines::before { width: 70vw; height: 70vw; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-lines::after  { width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-eyebrow {
+      font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: .05em;
+      color: var(--text); margin-bottom: .6rem;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(1rem, 2vw, 1.4rem);
+      color: var(--text-muted); letter-spacing: .12em; margin-bottom: 3rem;
+    }
+
+    .hero-divider {
+      display: flex; align-items: center; gap: 1rem;
+      justify-content: center; margin-bottom: 3rem;
+    }
+    .hero-divider span { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim)); }
+    .hero-divider span:last-child { background: linear-gradient(to left, transparent, var(--gold-dim)); }
+    .hero-divider i { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); display: block; }
+
+    .hero-cta { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+      background: var(--gold); color: var(--bg);
+      padding: 1rem 2.4rem; text-decoration: none; font-weight: 500;
+      transition: background .3s, transform .2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+      border: 1px solid var(--gold-dim); color: var(--gold);
+      padding: 1rem 2.4rem; text-decoration: none;
+      transition: background .3s, color .3s, transform .2s; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(201,168,76,.1); transform: translateY(-1px); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+    /* SECTION COMMONS */
+    section { padding: 8rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .6rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300; line-height: 1.15; letter-spacing: .04em;
+      color: var(--text); margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .gold-rule {
+      width: 40px; height: 1px; background: var(--gold); margin: 1.6rem 0 2.5rem;
+    }
+    .gold-rule.center { margin-left: auto; margin-right: auto; }
+
+    .section-body {
+      font-size: .88rem; color: var(--text-muted); max-width: 560px; line-height: 2;
+    }
+    .section-body.center { text-align: center; margin: 0 auto; }
+
+    /* ABOUT */
+    #about { background: var(--bg2); }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+
+    .about-visual { position: relative; aspect-ratio: 3/4; max-width: 420px; }
+    .about-frame { position: absolute; inset: 0; border: 1px solid var(--border); }
+    .about-frame::before {
+      content: ''; position: absolute; inset: 12px; border: 1px solid rgba(201,168,76,.08);
+    }
+    .about-pattern {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 40% 60%, rgba(201,168,76,.05) 0%, transparent 70%),
+        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,168,76,.02) 20px, rgba(201,168,76,.02) 21px);
+    }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 100px; height: 100px; border: 1px solid var(--gold-dim);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: var(--bg2);
+    }
+    .about-badge .num {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--gold); line-height: 1;
+    }
+    .about-badge .lbl { font-size: .55rem; letter-spacing: .18em; color: var(--text-muted); margin-top: .2rem; }
+
+    .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2.5rem; }
+    .about-feature { border-left: 1px solid var(--gold-dim); padding-left: 1rem; }
+    .about-feature h4 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400;
+      color: var(--gold); margin-bottom: .3rem;
+    }
+    .about-feature p { font-size: .75rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* FEATURES */
+    #features { background: var(--bg); }
+
+    .features-header { text-align: center; margin-bottom: 5rem; }
+    .features-header .gold-rule { margin-left: auto; margin-right: auto; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+    .feature-card {
+      background: var(--bg2); padding: 3.5rem 2.5rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color .3s, background .3s; position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,.04) 0%, transparent 70%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .feature-card:hover { border-color: var(--gold); background: var(--bg3); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;
+      color: rgba(201,168,76,.12); line-height: 1; margin-bottom: 1.5rem; display: block;
+    }
+
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400;
+      color: var(--text); margin-bottom: .8rem; letter-spacing: .04em;
+    }
+    .feature-card p { font-size: .8rem; color: var(--text-muted); line-height: 1.9; }
+
+    /* OCCASIONS */
+    #occasions { background: var(--bg3); }
+
+    .occasions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 4rem; }
+
+    .occasion-card {
+      border: 1px solid var(--border); padding: 2.5rem;
+      transition: border-color .3s; position: relative;
+    }
+    .occasion-card:hover { border-color: var(--gold-dim); }
+    .occasion-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .4s;
+    }
+    .occasion-card:hover::after { width: 100%; }
+    .occasion-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400;
+      color: var(--gold); margin-bottom: .6rem; letter-spacing: .06em;
+    }
+    .occasion-card p { font-size: .8rem; color: var(--text-muted); line-height: 1.9; }
+
+    /* INFO */
+    #info { background: var(--bg2); }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr { border-bottom: 1px solid var(--border); }
+    .info-table tr:first-child { border-top: 1px solid var(--border); }
+    .info-table td { padding: 1.1rem 0; font-size: .82rem; vertical-align: top; }
+    .info-table td:first-child {
+      color: var(--gold); font-size: .7rem; letter-spacing: .18em;
+      text-transform: uppercase; width: 38%; padding-right: 1rem;
+    }
+    .info-table td:last-child { color: var(--text-muted); }
+
+    .info-map { border: 1px solid var(--border); overflow: hidden; aspect-ratio: 4/3; }
+    .info-map iframe { width: 100%; height: 100%; display: block; filter: grayscale(1) invert(1) contrast(.85); }
+
+    /* RESERVATION */
+    #reservation { background: var(--bg); text-align: center; position: relative; overflow: hidden; }
+    #reservation::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .reservation-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+
+    .reservation-ornament {
+      display: flex; align-items: center; gap: 1.2rem; justify-content: center; margin-bottom: 2.5rem;
+    }
+    .reservation-ornament span { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim)); }
+    .reservation-ornament span:last-child { background: linear-gradient(to left, transparent, var(--gold-dim)); }
+    .reservation-ornament i { width: 8px; height: 8px; border: 1px solid var(--gold); transform: rotate(45deg); display: block; }
+
+    #reservation .section-title { font-size: clamp(2rem, 4vw, 3rem); }
+    #reservation .section-body { font-size: .85rem; margin-bottom: 3rem; }
+
+    .reservation-note {
+      font-size: .72rem; color: var(--text-muted); letter-spacing: .08em; margin-top: 1.5rem; opacity: .7;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--bg2); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+
+    .contact-item { margin-bottom: 2rem; }
+    .contact-item label {
+      display: block; font-size: .6rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: .5rem;
+    }
+    .contact-item a, .contact-item span {
+      font-size: .88rem; color: var(--text-muted); text-decoration: none; transition: color .3s;
+    }
+    .contact-item a:hover { color: var(--gold); }
+
+    .social-links { display: flex; gap: 1.2rem; margin-top: 2rem; }
+    .social-link {
+      width: 40px; height: 40px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--text-muted);
+      transition: border-color .3s, color .3s;
+      font-size: .7rem; letter-spacing: .05em;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      color: var(--gold); letter-spacing: .15em;
+    }
+    .footer-copy { font-size: .65rem; color: var(--text-muted); letter-spacing: .1em; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-size: .65rem; letter-spacing: .15em; color: var(--text-muted);
+      text-decoration: none; transition: color .3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      .about-grid, .info-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { max-width: 280px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .occasions-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 2.5rem 1.5rem; }
+    }
+
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
 </head>
-<body class="bg-white text-gray-900">
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="text-3xl font-bold text-amber-900">
-                    Cantina
-                </div>
+<body>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-amber-700 transition-colors font-medium">当店について</a>
-                    <a href="#menu" class="text-gray-700 hover:text-amber-700 transition-colors font-medium">メニュー</a>
-                    <a href="#events" class="text-gray-700 hover:text-amber-700 transition-colors font-medium">イベント</a>
-                    <a href="#contact" class="text-gray-700 hover:text-amber-700 transition-colors font-medium">お問い合わせ</a>
-                </div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Cantina Akasaka <span>赤坂</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Menu</a></li>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#info">Access</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="nav-reserve">Reserve</a>
+</nav>
 
-                <!-- CTA Button -->
-                <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank"
-                   class="hidden md:block px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-bold shadow-lg">
-                    予約する
-                </a>
-            </div>
-        </nav>
-    </header>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Fukuoka · Akasaka · Italian</p>
+    <h1 class="hero-title">Cantina<br><em>Akasaka</em></h1>
+    <p class="hero-subtitle">カンティーナ赤坂 — 完全予約制のイタリアン</p>
+    <div class="hero-divider">
+      <span></span><i></i><span></span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn-primary">ご予約はこちら</a>
+      <a href="#about" class="btn-outline">About Us</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="relative w-full h-screen hero-gradient flex items-center justify-center overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual fade-in">
+        <div class="about-frame">
+          <div class="about-pattern"></div>
         </div>
-
-        <!-- Content -->
-        <div class="relative z-10 text-center text-white max-w-3xl px-4">
-            <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-                Cantina
-            </h1>
-            <p class="text-xl md:text-2xl mb-4 text-gray-100 font-light">
-                ワインと料理が融合した
-            </p>
-            <p class="text-xl md:text-2xl mb-12 text-gray-100 font-light">
-                特別な空間
-            </p>
-
-            <!-- CTA Button -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank"
-                   class="px-8 py-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i class="fas fa-calendar"></i> 今すぐ予約
-                </a>
-                <a href="#about"
-                   class="px-8 py-4 bg-white text-amber-900 rounded-lg hover:bg-gray-100 transition-colors font-bold text-lg shadow-lg">
-                    詳しく見る
-                </a>
-            </div>
+        <div class="about-badge">
+          <span class="num">17</span>
+          <span class="lbl">Open</span>
         </div>
-
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-            <div class="animate-bounce">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </div>
+      </div>
+      <div class="fade-in">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">大人のための、<br><em>特別な夜</em></h2>
+        <div class="gold-rule"></div>
+        <p class="section-body">
+          福岡・赤坂の静かな一角に佇む、完全予約制のイタリアンレストラン。
+          シェフが厳選した旬の食材と、世界各地から集めた珠玉のワインで、
+          日常を離れた贅沢なひとときをご提供します。
+          洗練された空間で奏でられる料理の物語に、どうぞ身を委ねてください。
+        </p>
+        <div class="about-features">
+          <div class="about-feature">
+            <h4>完全予約制</h4>
+            <p>ゆったりとした空間と丁寧なサービスのために、完全予約制を採用しています。</p>
+          </div>
+          <div class="about-feature">
+            <h4>創作イタリアン</h4>
+            <p>シェフの感性が光る、季節ごとに変わる独創的なイタリア料理。</p>
+          </div>
+          <div class="about-feature">
+            <h4>厳選ワイン</h4>
+            <p>イタリアをはじめ、世界各地の名醸地から丁寧に選んだ一本。</p>
+          </div>
+          <div class="about-feature">
+            <h4>プライベート空間</h4>
+            <p>落ち着いた大人の雰囲気で、大切な方との特別な時間を。</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <!-- Text Content -->
-                <div>
-                    <div class="section-divider pb-4 mb-6">
-                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900">
-                            当店について
-                        </h2>
-                    </div>
-                    <p class="text-gray-600 text-lg mb-4 leading-relaxed">
-                        福岡市中央区赤坂に位置する高級イタリアンレストラン「カンティーナ赤坂」。本格的なイタリア料理と厳選されたワインが融合した、大人のための特別な空間です。
-                    </p>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
-                        季節の食材を活かした創作イタリアンから、本場ヨーロッパのクラシックまで、シェフこだわりのメニューをお楽しみいただけます。
-                    </p>
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="features-header fade-in">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">三つの<em>こだわり</em></h2>
+      <div class="gold-rule center"></div>
+      <p class="section-body center">
+        料理・ワイン・空間。カンティーナ赤坂が大切にする三つの柱が、唯一無二の体験を生み出します。
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <span class="feature-num">01</span>
+        <h3>厳選ワイン</h3>
+        <p>
+          イタリア各州の名醸ワインを中心に、フランス・スペイン・新世界まで、
+          ソムリエが一本一本選び抜いたラインナップ。料理との最高のペアリングをご提案します。
+        </p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-num">02</span>
+        <h3>シェフの逸品</h3>
+        <p>
+          九州の旬の食材にイタリアの伝統と現代的な感性を融合させた創作料理。
+          季節ごとに変わるメニューで、何度訪れても新鮮な感動を。
+        </p>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-num">03</span>
+        <h3>大人の空間</h3>
+        <p>
+          ゆったりとしたシートと落ち着いた照明、心地よい音楽が流れる店内。
+          大切な方との特別なひとときに相応しい、洗練された大人の空間です。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <!-- Features -->
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-red-600 text-white">
-                                    <i class="fas fa-wine-glass text-lg"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">厳選ワイン</h3>
-                                <p class="text-gray-600">イタリアを中心とした世界各地のワイン</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-red-600 text-white">
-                                    <i class="fas fa-utensils text-lg"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">シェフの逸品</h3>
-                                <p class="text-gray-600">季節の食材を活かした創作メニュー</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-red-600 text-white">
-                                    <i class="fas fa-sparkles text-lg"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">特別な空間</h3>
-                                <p class="text-gray-600">大人のための落ち着いた雰囲気</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- OCCASIONS -->
+<section id="occasions">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Special Occasions</p>
+      <h2 class="section-title">特別な<em>シーン</em>に</h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">
+        記念日、デート、接待、お祝い——大切なシーンの数だけ、特別な体験を。
+        カンティーナ赤坂がその夜を、忘れられない思い出に変えます。
+      </p>
+    </div>
+    <div class="occasions-grid">
+      <div class="occasion-card fade-in">
+        <h3>Anniversary &amp; Birthday</h3>
+        <p>記念日・誕生日のサプライズ演出もご相談ください。特別なメッセージプレートやシャンパンのご用意も可能です。</p>
+      </div>
+      <div class="occasion-card fade-in">
+        <h3>Romantic Dinner</h3>
+        <p>二人だけの特別な夜に。落ち着いた雰囲気の中で、料理とワインが会話に彩りを添えます。</p>
+      </div>
+      <div class="occasion-card fade-in">
+        <h3>Business Entertainment</h3>
+        <p>大切なお客様との会食や接待に。洗練されたサービスとプライバシーが守られた空間をご提供します。</p>
+      </div>
+      <div class="occasion-card fade-in">
+        <h3>Celebration</h3>
+        <p>昇進・入学・卒業など人生の節目に。グループでのご利用もご相談承ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Image Placeholder -->
-                <div class="relative rounded-lg overflow-hidden shadow-xl h-96 md:h-full">
-                    <div class="w-full h-full bg-gradient-to-br from-amber-200 via-amber-300 to-red-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">🍽️</div>
-                            <p class="text-amber-900 font-bold">店舗イメージ画像</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- INFO -->
+<section id="info">
+  <div class="section-inner">
+    <div class="fade-in" style="margin-bottom:3.5rem">
+      <p class="section-label">Access &amp; Hours</p>
+      <h2 class="section-title">店舗<em>情報</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="info-grid">
+      <div class="fade-in">
+        <table class="info-table">
+          <tr>
+            <td>住所</td>
+            <td>福岡県福岡市中央区赤坂<br><span style="font-size:.75rem;opacity:.6">地下鉄空港線・赤坂駅より徒歩3分</span></td>
+          </tr>
+          <tr>
+            <td>電話</td>
+            <td><a href="tel:09233001234" style="color:var(--text-muted);text-decoration:none;">092-3XX-1234</a></td>
+          </tr>
+          <tr>
+            <td>メール</td>
+            <td><a href="mailto:info@cantina.jp" style="color:var(--text-muted);text-decoration:none;">info@cantina.jp</a></td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td>火〜木・日 &nbsp;17:00 – 24:00<br>金・土 &nbsp;17:00 – 01:00</td>
+          </tr>
+          <tr>
+            <td>定休日</td>
+            <td style="opacity:.5">月曜日</td>
+          </tr>
+          <tr>
+            <td>予約</td>
+            <td>完全予約制 — HotPepperよりご予約ください</td>
+          </tr>
+          <tr>
+            <td>駐車場</td>
+            <td>近隣に契約駐車場あり</td>
+          </tr>
+        </table>
+      </div>
+      <div class="fade-in">
+        <div class="info-map">
+          <iframe
+            src="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="カンティーナ赤坂 地図">
+          </iframe>
         </div>
-    </section>
+        <p style="font-size:.72rem;color:var(--text-muted);margin-top:1rem;line-height:1.8;opacity:.7;">
+          地下鉄空港線 赤坂駅 出口より徒歩約3分。<br>
+          お車でお越しの際は近隣の契約駐車場をご利用ください。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Info Section -->
-    <section id="info" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16">
-                店舗情報
-            </h2>
+<!-- RESERVATION -->
+<section id="reservation">
+  <div class="reservation-inner fade-in">
+    <div class="reservation-ornament">
+      <span></span><i></i><span></span>
+    </div>
+    <p class="section-label">Reservation</p>
+    <h2 class="section-title">ご予約・<em>お問い合わせ</em></h2>
+    <div class="gold-rule center"></div>
+    <p class="section-body center">
+      カンティーナ赤坂は完全予約制です。
+      HotPepperよりご予約いただくか、お電話・メールにてお問い合わせください。
+      皆様のご来店を心よりお待ちしております。
+    </p>
+    <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1rem;">
+      HotPepperで予約する
+    </a>
+    <p class="reservation-note">完全予約制 / Completely Reservation-Based</p>
+  </div>
+</section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Business Hours -->
-                <div class="glass-effect p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6"><i class="fas fa-clock text-red-600 mr-2"></i>営業時間</h3>
-                    <div class="space-y-3 text-gray-700">
-                        <div class="flex justify-between pb-2 border-b border-gray-200">
-                            <span>月曜日</span>
-                            <span class="font-semibold text-red-600">定休日</span>
-                        </div>
-                        <div class="flex justify-between pb-2 border-b border-gray-200">
-                            <span>火～木曜日</span>
-                            <span class="font-semibold">17:00 - 00:00</span>
-                        </div>
-                        <div class="flex justify-between pb-2 border-b border-gray-200">
-                            <span>金～土曜日</span>
-                            <span class="font-semibold">17:00 - 01:00</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>日曜日</span>
-                            <span class="font-semibold">17:00 - 00:00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact -->
-                <div class="glass-effect p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6"><i class="fas fa-envelope text-red-600 mr-2"></i>お問い合わせ</h3>
-                    <div class="space-y-4 text-gray-700">
-                        <div>
-                            <p class="font-semibold text-gray-900"><i class="fas fa-phone mr-2 text-red-600"></i>電話</p>
-                            <a href="tel:+81923XX1234" class="text-red-600 hover:text-red-700 text-lg font-bold">
-                                092-3XX-1234
-                            </a>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-900"><i class="fas fa-envelope mr-2 text-red-600"></i>メール</p>
-                            <a href="mailto:info@cantina.jp" class="text-red-600 hover:text-red-700 font-bold">
-                                info@cantina.jp
-                            </a>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-900"><i class="fas fa-bookmark mr-2 text-red-600"></i>営業形態</p>
-                            <p>完全予約制</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Access -->
-                <div class="glass-effect p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6"><i class="fas fa-map-pin text-red-600 mr-2"></i>アクセス</h3>
-                    <div class="space-y-4 text-gray-700">
-                        <div>
-                            <p class="font-semibold text-gray-900"><i class="fas fa-map-pin mr-2 text-red-600"></i>住所</p>
-                            <p>福岡県福岡市中央区赤坂</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-900"><i class="fas fa-train mr-2 text-red-600"></i>交通</p>
-                            <p>地下鉄空港線「赤坂駅」<br/>から徒歩 3 分</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-900"><i class="fas fa-square-parking mr-2 text-red-600"></i>駐車場</p>
-                            <p>契約駐車場あり</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">お<em>問い合わせ</em></h2>
+        <div class="gold-rule"></div>
+        <p class="section-body">
+          ご不明な点やご要望がございましたら、お気軽にご連絡ください。
+          スタッフ一同、誠心誠意対応いたします。
+        </p>
+      </div>
+      <div class="fade-in">
+        <div class="contact-item">
+          <label>Phone</label>
+          <a href="tel:09233001234">092-3XX-1234</a>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="menu" class="py-20 hero-gradient">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                本格イタリアンを堪能
-            </h2>
-            <p class="text-xl text-gray-100 mb-12">
-                シェフこだわりのメニューをお楽しみください
-            </p>
-            <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank"
-               class="inline-block px-10 py-4 bg-white text-red-600 rounded-lg hover:bg-gray-100 transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 flex items-center justify-center gap-2">
-                <i class="fas fa-calendar"></i> ホットペッパーで予約する
-            </a>
+        <div class="contact-item">
+          <label>Email</label>
+          <a href="mailto:info@cantina.jp">info@cantina.jp</a>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">
-                こんなシーンでご利用ください
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Feature 1 -->
-                <div class="p-6 border-2 border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all">
-                    <div class="text-4xl mb-4 text-red-600"><i class="fas fa-heart"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">デート</h3>
-                    <p class="text-gray-600">特別な夜を演出する落ち着いた空間</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="p-6 border-2 border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all">
-                    <div class="text-4xl mb-4 text-red-600"><i class="fas fa-people-group"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">会食</h3>
-                    <p class="text-gray-600">大切なゲストとの食事に最適</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="p-6 border-2 border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all">
-                    <div class="text-4xl mb-4 text-red-600"><i class="fas fa-cake-candles"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">記念日</h3>
-                    <p class="text-gray-600">誕生日やアニバーサリーのお祝いに</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="p-6 border-2 border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all">
-                    <div class="text-4xl mb-4 text-red-600"><i class="fas fa-handshake"></i></div>
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">接待</h3>
-                    <p class="text-gray-600">ビジネスの大切なシーンに</p>
-                </div>
-            </div>
+        <div class="contact-item">
+          <label>Instagram</label>
+          <a href="https://instagram.com/cantinaakasaka" target="_blank" rel="noopener">@cantinaakasaka</a>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- About -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">Cantina Akasaka</h3>
-                    <p class="text-gray-400 text-sm">
-                        福岡市赤坂の高級イタリアンレストラン。ワインと料理が融合した特別な空間。
-                    </p>
-                </div>
-
-                <!-- Links -->
-                <div>
-                    <h4 class="font-bold mb-4">メニュー</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white transition">当店について</a></li>
-                        <li><a href="#" class="hover:text-white transition">メニュー</a></li>
-                        <li><a href="#" class="hover:text-white transition">イベント</a></li>
-                        <li><a href="#" class="hover:text-white transition">ブログ</a></li>
-                    </ul>
-                </div>
-
-                <!-- Social -->
-                <div>
-                    <h4 class="font-bold mb-4">フォロー</h4>
-                    <div class="flex space-x-4">
-                        <a href="https://instagram.com/cantinaakasaka" target="_blank" class="hover:text-pink-500 transition text-2xl">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6" target="_blank" class="hover:text-red-500 transition text-2xl">
-                            <i class="fas fa-map-pin"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="font-bold mb-4">お問い合わせ</h4>
-                    <div class="space-y-2 text-gray-400 text-sm">
-                        <p><i class="fas fa-phone"></i> 092-3XX-1234</p>
-                        <p><i class="fas fa-envelope"></i> info@cantina.jp</p>
-                        <p><i class="fas fa-clock"></i> 営業時間: 17:00 - 00:00</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 pt-8">
-                <p class="text-center text-gray-400 text-sm">
-                    &copy; 2026 Cantina Akasaka. All rights reserved.
-                </p>
-            </div>
+        <div class="contact-item">
+          <label>Reservation</label>
+          <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener">HotPepper Beauty</a>
         </div>
-    </footer>
+        <div class="social-links">
+          <a href="https://instagram.com/cantinaakasaka" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">IG</a>
+          <a href="https://maps.app.goo.gl/XTVVBCYCCG18QL4N6" target="_blank" rel="noopener" class="social-link" aria-label="Maps">MAP</a>
+          <a href="https://www.hotpepper.jp/strJ000670170/" target="_blank" rel="noopener" class="social-link" aria-label="HotPepper">HP</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Scroll to top button -->
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-            class="fixed bottom-8 right-8 p-3 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition-all opacity-0 hover:opacity-100 duration-300"
-            id="scrollBtn">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Cantina Akasaka</span>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Menu</a></li>
+    <li><a href="#info">Access</a></li>
+    <li><a href="#reservation">Reserve</a></li>
+  </ul>
+  <span class="footer-copy">&copy; 2026 カンティーナ赤坂. All rights reserved.</span>
+</footer>
 
-    <script>
-        // Show/hide scroll button
-        window.addEventListener('scroll', function() {
-            const btn = document.getElementById('scrollBtn');
-            if (window.pageYOffset > 300) {
-                btn.classList.remove('opacity-0');
-            } else {
-                btn.classList.add('opacity-0');
-            }
-        });
-    </script>
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
